@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GIO_Machine</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Press Start 2P', cursive;
+      background: linear-gradient(to top, #5d1959, #000000);
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #container {
+      width: 90%;
+      max-width: 500px;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 10px;
+      color: #721e6e;
+      box-shadow: 0px 0px 15px #721e6e;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #ffffff;
+      text-shadow: 2px 2px #000;
+    }
+
+    .campo {
+      margin: 20px 0;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: #ffffff;
+    }
+
+    input[type="text"] {
+      width: 80%;
+      padding: 10px;
+      font-size: 14px;
+      border-radius: 5px;
+      border: 2px solid #d400ff;
+      background: #111;
+      color: #d400ff;
+      text-align: center;
+    }
+
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #ffffff;
+      box-shadow: 0 0 10px #ffffff;
+    }
+    .mtt {
+        width: 150px;
+        margin-bottom: 20px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    
+  </style>
+</head>
+
+<body>
+    
+  <div id="container">
+    <img src="img/mtt.gif" id="mtt"> <!--mettaton porque sou fã dele -->
+    
+    <h1>GIO_Machine</h1>
+
+    <div class="campo">
+      <label>Decimal:</label>
+      <input type="text" id="decimal" oninput="decimal(this.value)">
+    </div>
+
+    <div class="campo">
+      <label>Binário:</label>
+      <input type="text" id="binario" oninput="binario(this.value)">
+    </div>
+
+    <div class="campo">
+      <label>Hexadecimal:</label>
+      <input type="text" id="hexadecimal" oninput="hexa(this.value)">
+    </div>
+
+    <div class="campo">
+      <label>Octal:</label>
+      <input type="text" id="octal" oninput="octal(this.value)">
+    </div>
+  </div>
+
+  <script>
+function decimal(valor) {
+    if (valor === "" || isNaN(valor)) return limpar();
+    var dec = parseInt(valor, 10);
+    document.getElementById("binario").value = dec.toString(2);
+    document.getElementById("hexadecimal").value = dec.toString(16).toUpperCase();
+    document.getElementById("octal").value = dec.toString(8);
+}
+
+function binario(valor) {
+    if (valor === "" || /[^01]/.test(valor)) return limpar();
+    var dec = parseInt(valor, 2);
+    document.getElementById("decimal").value = dec;
+    document.getElementById("hexadecimal").value = dec.toString(16).toUpperCase();
+    document.getElementById("octal").value = dec.toString(8);
+}
+
+function hexa(valor) {
+    if (valor === "" || /[^0-9a-fA-F]/.test(valor)) return limpar();
+    var dec = parseInt(valor, 16);
+    document.getElementById("decimal").value = dec;
+    document.getElementById("binario").value = dec.toString(2);
+    document.getElementById("octal").value = dec.toString(8);
+}
+
+function octal(valor) {
+    if (valor === "" || /[^0-7]/.test(valor)) return limpar();
+    var dec = parseInt(valor, 8);
+    document.getElementById("decimal").value = dec;
+    document.getElementById("binario").value = dec.toString(2);
+    document.getElementById("hexadecimal").value = dec.toString(16).toUpperCase();
+}
+
+function limpar() {
+    document.getElementById("decimal").value = "";
+    document.getElementById("binario").value = "";
+    document.getElementById("hexadecimal").value = "";
+    document.getElementById("octal").value = "";
+}
+</script>
+        </body>
+
+        </html>
